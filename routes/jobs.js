@@ -2,15 +2,39 @@ const express = require('express');
 const router = express.Router();
 const Job = require('../models/Job');
 
-// Get all jobs
+// Get all jobs with optional query parameters
 router.get('/', async (req, res) => {
   try {
-    const jobs = await Job.find();
+    const { _limit, _sort, _order } = req.query;
+    let query = Job.find();
+
+    // Apply sorting if specified
+    if (_sort) {
+      const sortOrder = _order === 'desc' ? -1 : 1;
+      query = query.sort({ [_sort]: sortOrder });
+    }
+
+    // Apply limit if specified
+    if (_limit) {
+      query = query.limit(parseInt(_limit));
+    }
+
+    const jobs = await query.exec();
     res.json(jobs);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 });
+
+// Get all jobs
+// router.get('/', async (req, res) => {
+//   try {
+//     const jobs = await Job.find();
+//     res.json(jobs);
+//   } catch (err) {
+//     res.status(500).json({ message: err.message });
+//   }
+// });
 
 // Get a job by ID
 router.get('/:id', async (req, res) => {
