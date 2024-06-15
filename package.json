@@ -1,0 +1,33 @@
+{
+  "name": "jobbinder_backend",
+  "version": "1.0.0",
+  "description": "The backend repo for the JobBinder project using Express, Mongoose, and other utilities.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "JobBinder_backend"
+  },
+  "keywords": [
+    "Jobs",
+    "apply",
+    "MongoDB",
+    "Express",
+    "node",
+    "job"
+  ],
+  "author": "Prince NZAMUWE",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.4.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.3"
+  }
+}
